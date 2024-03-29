@@ -33,9 +33,7 @@ const getData = (onSuccess) => {
     .then((data) => {
       onSuccess(data);
     })
-    .catch(() => {
-      showAlert();
-    });
+    .catch(() => showAlert());
 };
 
 const sendData = (onSuccess, onFail, body) => {

@@ -6,7 +6,7 @@ const MAX_SCALE = 100;
 const MIN_SCALE = 25;
 const SCALE_STEP = 25;
 
-const onScalingAdd = () => {
+const addScaling = () => {
   scaleControlSmaller.addEventListener('click', () => {
     const scaleValueInteger = parseInt(scaleControlValue.value, 10);
 
@@ -29,4 +29,4 @@ const onScalingAdd = () => {
   });
 };
 
-export{onScalingAdd};
+export{addScaling};

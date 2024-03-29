@@ -9,13 +9,11 @@ const buttonLoaderComments = document.querySelector('.social__comments-loader');
 const commentsList = document.querySelector('.social__comments');
 
 
-const onEscKeydown = (close) => {
-  document.addEventListener('keydown', (evt) => {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      close();
-    }
-  });
+const onEscKeydown = (close) => (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    close();
+  }
 };
 
 function openBigPicture () {
