@@ -1,11 +1,10 @@
-import './mock-data.js';
 import {сreatePicture} from './сreation-picture.js';
+import {getBigPictureData} from './big-picture.js';
 import './open-modal.js';
-import {createBigPicture} from './creation-big-picture.js';
-import {generatesDescriptions} from './mock-data.js';
 import './validate-form.js';
+import {getData} from './api.js';
 
-const picturesData = generatesDescriptions();
-
-сreatePicture(picturesData);
-createBigPicture(picturesData);
+getData((data) => {
+  сreatePicture(data);
+  getBigPictureData(data);
+});

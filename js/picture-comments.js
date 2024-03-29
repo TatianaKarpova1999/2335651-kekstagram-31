@@ -37,9 +37,9 @@ const loadCommentsPartly = () => {
   commentShownCount.textContent = commentsList.children.length - commentsList.getElementsByClassName('hidden').length;
 };
 
-const loadComments = () => {
+const onCommentsLoad = () => {
   loadCommentsPartly();
   buttonLoaderComments.addEventListener ('click', loadCommentsPartly);
 };
 
-export{loadComments, addСommentsList, loadCommentsPartly};
+export{onCommentsLoad, addСommentsList, loadCommentsPartly};
