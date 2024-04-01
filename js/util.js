@@ -25,5 +25,12 @@ const showAlert = () => {
   }, ALERT_SHOW_TIME);
 };
 
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
 
-export {getRandomNumberAvatars, getRandomNumberLikes, getRandomArrayElement, getRandomNumberCommentsCount, isEscapeKey, isEnterKey, showAlert};
+export {getRandomNumberAvatars, getRandomNumberLikes, getRandomArrayElement, getRandomNumberCommentsCount, isEscapeKey, isEnterKey, showAlert, debounce};
