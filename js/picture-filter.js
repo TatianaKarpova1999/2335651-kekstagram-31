@@ -5,17 +5,14 @@ const filterForm = document.querySelector('.img-filters__form');
 const filterButton = filterForm.querySelectorAll('.img-filters__button');
 const pictureList = document.querySelector('.pictures');
 
-const RERENDER_DELAY = 2000;
+const Filters = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed',
+};
+
+const RERENDER_DELAY = 500;
 const PICTURES_COUNT = 10;
-
-
-const getPictureDiscussed = (picture) => {
-  picture.sort((a,b) => b.comments.length - a.comments.length);
-};
-
-const getPictureRandom = (picture) => {
-  picture.sort(() => Math.random() - 0.5);
-};
 
 const switcFilterButton = () => {
   for (const button of filterButton) {
@@ -26,51 +23,44 @@ const switcFilterButton = () => {
   }
 };
 
-const clearMiniPictureList = () => {
-  const arrMiniPicture = Array.from(pictureList.children);
+const createPicturesDebounced = debounce(сreatePicture, RERENDER_DELAY);
 
-  arrMiniPicture.forEach((element) => {
+const clearMiniPictureList = () => {
+  const arrMiniPictures = Array.from(pictureList.children);
+
+  arrMiniPictures.forEach((element) => {
     if (element.className === 'picture'){
       element.remove();
     }
   });
 };
 
+
 const changePictureList = (data) => {
-  const COPY_ARR = data.slice();
+  const copyArr = data.slice();
+  const pictureListRandom = copyArr.slice(0, PICTURES_COUNT);
 
   filterForm.addEventListener('click', (evt) => {
-    if (evt.target.id === 'filter-discussed') {
-      clearMiniPictureList();
+    switch (evt.target.id) {
+      case Filters.RANDOM:
+        clearMiniPictureList();
+        pictureListRandom.sort(() => Math.random() - 0.5);
+        createPicturesDebounced(pictureListRandom);
+        break;
 
-      getPictureDiscussed(COPY_ARR);
+      case Filters.DISCUSSED:
+        clearMiniPictureList();
+        copyArr.sort((a,b) => b.comments.length - a.comments.length);
+        createPicturesDebounced(copyArr);
+        break;
 
-      сreatePicture(COPY_ARR);
-
-      debounce(() => сreatePicture(COPY_ARR), RERENDER_DELAY);
-
-    } else if (evt.target.id === 'filter-default') {
-      clearMiniPictureList();
-
-      сreatePicture(data);
-
-      debounce(() => сreatePicture(data), RERENDER_DELAY);
-
-    } else if (evt.target.id === 'filter-random') {
-      clearMiniPictureList();
-
-      const pictureListRandom = COPY_ARR.slice(0, PICTURES_COUNT);
-
-      getPictureRandom(pictureListRandom);
-
-      сreatePicture(pictureListRandom);
-
-      debounce(() => сreatePicture(pictureListRandom), RERENDER_DELAY);
+      default:
+        clearMiniPictureList();
+        createPicturesDebounced(data);
     }
   });
 };
 
-
 switcFilterButton();
 
-export{getPictureDiscussed, getPictureRandom, changePictureList};
+export{changePictureList};
