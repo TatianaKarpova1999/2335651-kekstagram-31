@@ -21,7 +21,7 @@ const switcFilterButton = () => {
   for (const button of filterButton) {
     button.addEventListener('click', function () {
       filterButton.forEach((element) => element.classList.remove('img-filters__button--active'));
-      this.classList.toggle('img-filters__button--active');
+      this.classList.add('img-filters__button--active');
     });
   }
 };
