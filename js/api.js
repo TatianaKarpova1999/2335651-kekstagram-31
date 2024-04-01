@@ -5,6 +5,7 @@ const successTemplate = document.querySelector('#success').content.querySelector
 const successButton = document.querySelector('#success').content.querySelector('.success__button');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const errorButton = document.querySelector('#error').content.querySelector('.error__button');
+const pictureFilters = document.querySelector('.img-filters');
 
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 
@@ -32,6 +33,7 @@ const getData = (onSuccess) => {
     .then((response) => response.json())
     .then((data) => {
       onSuccess(data);
+      pictureFilters.classList.remove('img-filters--inactive');
     })
     .catch(() => showAlert());
 };
