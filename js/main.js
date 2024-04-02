@@ -4,6 +4,7 @@ import './open-modal.js';
 import './validate-form.js';
 import {getData} from './api.js';
 import {changePictureList} from './picture-filter.js';
+import './preview.js';
 
 getData((data) => {
   сreatePicture(data);
