@@ -67,6 +67,7 @@ const onEffectChengePicture = (evt) => {
 
     const PICTURES_STYLE_DATA = {
       none: 'none',
+      chrome: `grayscale(${effectLevelValue.value})`,
       sepia: `sepia(${effectLevelValue.value})`,
       marvin: `invert(${effectLevelValue.value}%)`,
       phobos: `blur(${effectLevelValue.value}px)`,
