@@ -23,7 +23,7 @@ const addScaling = () => {
       scaleControlValue.value = `${parseInt(scaleControlValue.value, 10) + SCALE_STEP }%`;
       uploadPreview.style.transform = `scale(0.${parseInt(scaleControlValue.value, 10)})`;
       if(parseInt(scaleControlValue.value, 10) === MAX_SCALE) {
-        uploadPreview.style.transform = 'none';
+        uploadPreview.style.transform = 'scale(1)';
       }
     }
   });

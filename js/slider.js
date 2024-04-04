@@ -1,6 +1,6 @@
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
-const imgPreview = document.querySelector('.img-upload__preview');
+const imgPreview = document.querySelector('.img-upload__preview img');
 const containerSliderElement = document.querySelector('.img-upload__effect-level');
 
 const DEFAULT_SLIDER = {

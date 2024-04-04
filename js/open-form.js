@@ -15,11 +15,9 @@ uploadImg.addEventListener('change', (evt) => {
   if (evt.target.value) {
     editorImg.classList.remove('hidden');
     document.body.classList.add('modal-open');
-
     document.addEventListener('keydown', onEscKeydown(closeForm));
   }
 });
-
 
 function closeForm () {
   imgUploadOverlay.classList.add('hidden');

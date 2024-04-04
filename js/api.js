@@ -24,6 +24,7 @@ const onSuccessMessageClose = (template, button) => {
   document.body.addEventListener('keydown', (evt) => {
     if (isEscapeKey(evt)) {
       template.remove();
+      evt.stopPropagation();
     }
   });
 };
