@@ -1,7 +1,7 @@
-import {showAlert, isEscapeKey} from './util.js';
+import {showAlert, isEscapeKey} from '../util.js';
 
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorTemplate = document.querySelector('#error').content.querySelector('.error');
+const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
+const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 const pictureFilters = document.querySelector('.img-filters');
 
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
@@ -40,7 +40,7 @@ const getData = (onSuccess) => {
 };
 
 const sendData = (onSuccess, onFail, body) => {
-  fetch (`${BASE_URL}${route.SEND_DTA}`,
+  fetch (`${BASE_URL}${route.SEND_DATA}`,
     {
       method: 'POST',
       body: body,
@@ -49,14 +49,14 @@ const sendData = (onSuccess, onFail, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
-        openMessage(successTemplate);
+        openMessage(successMessageTemplate);
       } else {
-        openMessage(errorTemplate);
+        openMessage(errorMessageTemplate);
         onFail();
       }
     })
     .catch(() => {
-      document.body.append(errorTemplate);
+      document.body.append(errorMessageTemplate);
       onFail();
     });
 };

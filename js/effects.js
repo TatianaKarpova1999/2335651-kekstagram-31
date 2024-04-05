@@ -1,7 +1,7 @@
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const imgPreview = document.querySelector('.img-upload__preview img');
-const containerSliderElement = document.querySelector('.img-upload__effect-level');
+const sliderElementContainer = document.querySelector('.img-upload__effect-level');
 
 const DEFAULT_SLIDER = {
   range: {
@@ -20,7 +20,7 @@ const DEFAULT_SLIDER = {
 };
 
 
-const PICTURES_EFFECTS = {
+const PICTURE_EFFECTS = {
   none: {},
   chrome: {
     range: { min: 0, max: 1},
@@ -52,13 +52,13 @@ const PICTURES_EFFECTS = {
 noUiSlider.create(sliderElement, DEFAULT_SLIDER);
 
 sliderElement.classList.add('hidden');
-containerSliderElement.classList.add('hidden');
+sliderElementContainer.classList.add('hidden');
 
-const onEffectChengePicture = (evt) => {
+const onPictureEffectChenge = (evt) => {
 
   const effect = evt.target.value;
 
-  const applyingEffect = PICTURES_EFFECTS[effect];
+  const applyingEffect = PICTURE_EFFECTS[effect];
 
   sliderElement.noUiSlider.updateOptions(applyingEffect);
 
@@ -79,11 +79,11 @@ const onEffectChengePicture = (evt) => {
 
   if (effect === 'none') {
     sliderElement.classList.add('hidden');
-    containerSliderElement.classList.add('hidden');
+    sliderElementContainer.classList.add('hidden');
   } else {
     sliderElement.classList.remove('hidden');
-    containerSliderElement.classList.remove('hidden');
+    sliderElementContainer.classList.remove('hidden');
   }
 };
 
-export{onEffectChengePicture};
+export{onPictureEffectChenge};

@@ -4,10 +4,10 @@ const pictureList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 
-const сreatePicture = (generatesPictureData) => {
+const сreatePictures = (pictureData) => {
   const pictureListFragment = document.createDocumentFragment();
 
-  generatesPictureData.forEach(({url, description, likes, comments, id}) => {
+  pictureData.forEach(({url, description, likes, comments, id}) => {
     const pictureElement = pictureTemplate.cloneNode(true);
     const pictureImg = pictureElement.querySelector('.picture__img');
     pictureImg.setAttribute('data-id', id);
@@ -24,4 +24,4 @@ const сreatePicture = (generatesPictureData) => {
   pictureList.append(pictureListFragment);
 };
 
-export{сreatePicture};
+export{сreatePictures};

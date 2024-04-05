@@ -1,7 +1,7 @@
 import {closeForm} from './open-form.js';
-import {checkLengthComment, checkHashtags, checkLengthHashtags, checkRepeatHashtags} from './functions-validate-form.js';
-import {onEffectChengePicture} from './slider.js';
-import {addScaling} from './scale-control.js';
+import {checkLengthComment, checkHashtags, checkCountHashtags, checkRepeatHashtags} from './functions-validate-form.js';
+import {onPictureEffectChenge} from '../effects.js';
+import {addScaling} from '../scale-control.js';
 import {sendData} from './api.js';
 
 const imgEditorForm = document.querySelector('.img-upload__form');
@@ -34,7 +34,7 @@ pristine.addValidator(
 
 pristine.addValidator(
   textHashtags,
-  checkLengthHashtags,
+  checkCountHashtags,
   'Превышено количество хэштегов'
 );
 
@@ -75,7 +75,7 @@ const setUserFormSubmit = (onSuccess) => {
 
 addScaling();
 
-effectsList.addEventListener('change', onEffectChengePicture);
+effectsList.addEventListener('change', onPictureEffectChenge);
 
 textComment.addEventListener('keydown', (evt) => evt.stopPropagation());
 textHashtags.addEventListener('keydown', (evt) => evt.stopPropagation());

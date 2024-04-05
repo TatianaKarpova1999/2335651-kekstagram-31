@@ -20,10 +20,10 @@ const checkHashtags = (value) => {
   return true;
 };
 
-const checkLengthHashtags = (value) => value.split(' ').filter((x) => x).length <= MAX_HASHTAGS_COUNT;
+const checkCountHashtags = (value) => value.split(' ').filter((x) => x).length <= MAX_HASHTAGS_COUNT;
 
 const checkRepeatHashtags = (value) => new Set(value.toLowerCase().split(' ').filter((x) => x)).size === value.split(' ').filter((x) => x).length;
 
 const checkLengthComment = (value) => value.length <= MAX_LENGTH_COMMENT;
 
-export{checkLengthComment, checkHashtags, checkLengthHashtags, checkRepeatHashtags};
+export{checkLengthComment, checkHashtags, checkCountHashtags, checkRepeatHashtags};

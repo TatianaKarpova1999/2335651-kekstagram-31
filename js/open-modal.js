@@ -1,7 +1,7 @@
 import {isEscapeKey, isEnterKey} from './util.js';
 import {loadCommentsPartly} from './picture-comments.js';
 
-const miniPictureOpenElement = document.querySelector('.pictures');
+const miniPicture = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancelElement = document.querySelector('.big-picture__cancel');
 const body = document.querySelector('body');
@@ -33,13 +33,13 @@ function closeBigPicture () {
   document.removeEventListener('keydown', onEscKeydown(closeBigPicture));
 }
 
-miniPictureOpenElement.addEventListener('click', (evt) => {
+miniPicture.addEventListener('click', (evt) => {
   if (evt.target.className === 'picture__img') {
     openBigPicture();
   }
 });
 
-miniPictureOpenElement.addEventListener('keydown', (evt) => {
+miniPicture.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt) && evt.target.className === 'picture') {
     openBigPicture();
   }

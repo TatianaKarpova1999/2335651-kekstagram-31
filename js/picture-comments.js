@@ -2,7 +2,7 @@
 const buttonLoaderComments = document.querySelector('.social__comments-loader');
 const commentsList = document.querySelector('.social__comments');
 const commentTemplate = document.querySelector('.social__comment');
-const commentPicture = commentTemplate.querySelector('.social__picture');
+const commentAvatar = commentTemplate.querySelector('.social__picture');
 const commentText = commentTemplate.querySelector('.social__text');
 const commentShownCount = document.querySelector('.social__comment-shown-count');
 
@@ -11,8 +11,8 @@ const addСommentsList = (arr, id) => {
   commentsList.innerHTML = '';
 
   commentDescription.comments.forEach((comment) => {
-    commentPicture.src = comment.avatar;
-    commentPicture.alt = comment.name;
+    commentAvatar.src = comment.avatar;
+    commentAvatar.alt = comment.name;
     commentText.textContent = comment.message;
 
     const commentData = commentTemplate.cloneNode(true);

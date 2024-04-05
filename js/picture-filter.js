@@ -1,9 +1,9 @@
-import {сreatePicture} from './сreation-picture.js';
+import {сreatePictures} from './сreation-picture.js';
 import {debounce} from './util.js';
 
 const filterForm = document.querySelector('.img-filters__form');
 const filterButton = filterForm.querySelectorAll('.img-filters__button');
-const pictureList = document.querySelector('.pictures');
+const picturesList = document.querySelector('.pictures');
 
 const Filters = {
   DEFAULT: 'filter-default',
@@ -23,10 +23,10 @@ const switcFilterButton = () => {
   }
 };
 
-const createPicturesDebounced = debounce(сreatePicture, RERENDER_DELAY);
+const createPicturesDebounced = debounce(сreatePictures, RERENDER_DELAY);
 
-const clearMiniPictureList = () => {
-  const arrMiniPictures = Array.from(pictureList.children);
+const clearMiniPicturesList = () => {
+  const arrMiniPictures = Array.from(picturesList.children);
 
   arrMiniPictures.forEach((element) => {
     if (element.className === 'picture'){
@@ -38,24 +38,24 @@ const clearMiniPictureList = () => {
 
 const changePictureList = (data) => {
   const copyArr = data.slice();
-  const pictureListRandom = copyArr.slice(0, PICTURES_COUNT);
+  const pictureListRandom = copyArr;
 
   filterForm.addEventListener('click', (evt) => {
     switch (evt.target.id) {
       case Filters.RANDOM:
-        clearMiniPictureList();
+        clearMiniPicturesList();
         pictureListRandom.sort(() => Math.random() - 0.5);
-        createPicturesDebounced(pictureListRandom);
+        createPicturesDebounced(pictureListRandom.slice(0, PICTURES_COUNT));
         break;
 
       case Filters.DISCUSSED:
-        clearMiniPictureList();
+        clearMiniPicturesList();
         copyArr.sort((a,b) => b.comments.length - a.comments.length);
         createPicturesDebounced(copyArr);
         break;
 
       default:
-        clearMiniPictureList();
+        clearMiniPicturesList();
         createPicturesDebounced(data);
     }
   });
