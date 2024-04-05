@@ -44,7 +44,7 @@ const changePictureList = (data) => {
     switch (evt.target.id) {
       case Filters.RANDOM:
         clearMiniPicturesList();
-        pictureListRandom.sort(() => Math.random() - 0.5);
+        pictureListRandom.sort(() => 0.5 - Math.random());
         createPicturesDebounced(pictureListRandom.slice(0, PICTURES_COUNT));
         break;
 
