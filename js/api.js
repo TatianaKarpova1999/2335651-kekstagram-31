@@ -1,10 +1,7 @@
-import {showAlert} from './util.js';
-import {isEscapeKey} from './util.js';
+import {showAlert, isEscapeKey} from './util.js';
 
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const successButton = document.querySelector('#success').content.querySelector('.success__button');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
-const errorButton = document.querySelector('#error').content.querySelector('.error__button');
 const pictureFilters = document.querySelector('.img-filters');
 
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
@@ -14,19 +11,22 @@ const route = {
   SEND_DATA: '/',
 };
 
-const onSuccessMessageClose = (template, button) => {
-  button.addEventListener('click', () => template.remove());
-  template.addEventListener('click', (evt) => {
-    if (evt.target.className === 'success' || evt.target.className === 'error') {
-      template.remove();
-    }
-  });
-  document.body.addEventListener('keydown', (evt) => {
-    if (isEscapeKey(evt)) {
-      template.remove();
-      evt.stopPropagation();
-    }
-  });
+const closeMessage = (evt) => {
+  evt.stopPropagation();
+  const existElement = document.querySelector('.success') || document.querySelector('.error');
+  const closeButton = existElement.querySelector('button');
+  if (evt.target === existElement || evt.target === closeButton || isEscapeKey(evt)) {
+    existElement.remove();
+    document.body.removeEventListener('click', closeMessage);
+    document.body.removeEventListener('keydown', closeMessage);
+  }
+};
+
+const openMessage = (template) => {
+  const messageNode = template.cloneNode(true);
+  document.body.append(messageNode);
+  document.body.addEventListener('click', closeMessage);
+  document.body.addEventListener('keydown', closeMessage);
 };
 
 const getData = (onSuccess) => {
@@ -40,7 +40,7 @@ const getData = (onSuccess) => {
 };
 
 const sendData = (onSuccess, onFail, body) => {
-  fetch (`${BASE_URL}${route.SEND_DATA}`,
+  fetch (`${BASE_URL}${route.SEND_DTA}`,
     {
       method: 'POST',
       body: body,
@@ -49,19 +49,16 @@ const sendData = (onSuccess, onFail, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
-        document.body.append(successTemplate);
-        onSuccessMessageClose(successTemplate, successButton);
+        openMessage(successTemplate);
       } else {
-        document.body.append(errorTemplate);
-        onSuccessMessageClose(errorTemplate, errorButton);
+        openMessage(errorTemplate);
         onFail();
       }
     })
     .catch(() => {
       document.body.append(errorTemplate);
-      onSuccessMessageClose(errorTemplate, errorButton);
       onFail();
     });
 };
 
-export{getData, sendData, onSuccessMessageClose};
+export{getData, sendData};
