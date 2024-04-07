@@ -4,7 +4,7 @@ const MAX_HASHTAGS_COUNT = 5;
 const MAX_LENGTH_COMMENT = 140;
 
 const checkHashtags = (value) => {
-  const arrHashtags = value.split(' ');
+  const arrHashtags = value.split(' ').filter((x) => x);
 
   if (value === '') {
     return true;
@@ -23,6 +23,7 @@ const checkHashtags = (value) => {
 const checkCountHashtags = (value) => value.split(' ').filter((x) => x).length <= MAX_HASHTAGS_COUNT;
 
 const checkRepeatHashtags = (value) => new Set(value.toLowerCase().split(' ').filter((x) => x)).size === value.split(' ').filter((x) => x).length;
+
 
 const checkLengthComment = (value) => value.length <= MAX_LENGTH_COMMENT;
 

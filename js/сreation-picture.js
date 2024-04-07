@@ -3,8 +3,19 @@
 const pictureList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
+const clearMiniPicturesList = () => {
+  const arrMiniPictures = Array.from(pictureList.children);
+
+  arrMiniPictures.forEach((element) => {
+    if (element.className === 'picture'){
+      element.remove();
+    }
+  });
+};
+
 
 const сreatePictures = (pictureData) => {
+  clearMiniPicturesList();
   const pictureListFragment = document.createDocumentFragment();
 
   pictureData.forEach(({url, description, likes, comments, id}) => {
