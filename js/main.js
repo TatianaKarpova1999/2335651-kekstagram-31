@@ -2,7 +2,7 @@ import {createPictures} from './creation-picture.js';
 import {getBigPictureData} from './big-picture.js';
 import './open-modal.js';
 import './form/validate-form.js';
-import {getData} from './form/api.js';
+import {getData} from './api.js';
 import {changePicturesList} from './filter.js';
 import './preview.js';
 

@@ -2,7 +2,7 @@ import {closeForm} from './open-form.js';
 import {checkLengthComment, checkHashtags, checkCountHashtags, checkRepeatHashtags} from './functions-validate-form.js';
 import {onPictureEffectChange} from '../effects.js';
 import {addScaling} from '../scale-control.js';
-import {sendData} from './api.js';
+import {sendData} from '../api.js';
 
 const imgEditorForm = document.querySelector('.img-upload__form');
 const textComment = imgEditorForm.querySelector('.text__description');
