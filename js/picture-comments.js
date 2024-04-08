@@ -6,7 +6,7 @@ const commentAvatar = commentTemplate.querySelector('.social__picture');
 const commentText = commentTemplate.querySelector('.social__text');
 const commentShownCount = document.querySelector('.social__comment-shown-count');
 
-const addСommentsList = (arr, id) => {
+const addCommentsList = (arr, id) => {
   const commentDescription = arr.find((element) => element.id === parseInt(id, 10));
   commentsList.innerHTML = '';
 
@@ -42,4 +42,4 @@ const onCommentsLoad = () => {
   buttonLoaderComments.addEventListener ('click', loadCommentsPartly);
 };
 
-export{onCommentsLoad, addСommentsList, loadCommentsPartly};
+export{onCommentsLoad, addCommentsList, loadCommentsPartly};

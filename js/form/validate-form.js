@@ -1,6 +1,6 @@
 import {closeForm} from './open-form.js';
 import {checkLengthComment, checkHashtags, checkCountHashtags, checkRepeatHashtags} from './functions-validate-form.js';
-import {onPictureEffectChenge} from '../effects.js';
+import {onPictureEffectChange} from '../effects.js';
 import {addScaling} from '../scale-control.js';
 import {sendData} from './api.js';
 
@@ -75,7 +75,7 @@ const setUserFormSubmit = (onSuccess) => {
 
 addScaling();
 
-effectsList.addEventListener('change', onPictureEffectChenge);
+effectsList.addEventListener('change', onPictureEffectChange);
 
 textComment.addEventListener('keydown', (evt) => evt.stopPropagation());
 textHashtags.addEventListener('keydown', (evt) => evt.stopPropagation());

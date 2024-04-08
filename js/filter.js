@@ -1,4 +1,4 @@
-import {сreatePictures} from './сreation-picture.js';
+import {createPictures} from './creation-picture.js';
 import {debounce} from './util.js';
 
 const filterForm = document.querySelector('.img-filters__form');
@@ -13,7 +13,7 @@ const Filters = {
 const RERENDER_DELAY = 500;
 const PICTURES_COUNT = 10;
 
-const switcFilterButton = () => {
+const switchFilterButton = () => {
   for (const button of filterButton) {
     button.addEventListener('click', function () {
       filterButton.forEach((element) => element.classList.remove('img-filters__button--active'));
@@ -22,7 +22,7 @@ const switcFilterButton = () => {
   }
 };
 
-const createPicturesDebounced = debounce(сreatePictures, RERENDER_DELAY);
+const createPicturesDebounced = debounce(createPictures, RERENDER_DELAY);
 
 const changePicturesList = (data) => {
   const copyArr = data.slice();
@@ -36,18 +36,16 @@ const changePicturesList = (data) => {
         break;
 
       case Filters.DISCUSSED:
-        // clearMiniPicturesList();
         copyArr.sort((a,b) => b.comments.length - a.comments.length);
         createPicturesDebounced(copyArr);
         break;
 
       default:
-        // clearMiniPicturesList();
         createPicturesDebounced(data);
     }
   });
 };
 
-switcFilterButton();
+switchFilterButton();
 
 export{changePicturesList};

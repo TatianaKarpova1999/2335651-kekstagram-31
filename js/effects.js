@@ -54,7 +54,7 @@ noUiSlider.create(sliderElement, DEFAULT_SLIDER);
 sliderElement.classList.add('hidden');
 sliderElementContainer.classList.add('hidden');
 
-const onPictureEffectChenge = (evt) => {
+const onPictureEffectChange = (evt) => {
 
   const effect = evt.target.value;
 
@@ -86,4 +86,4 @@ const onPictureEffectChenge = (evt) => {
   }
 };
 
-export{onPictureEffectChenge};
+export{onPictureEffectChange};

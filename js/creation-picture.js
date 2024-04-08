@@ -14,7 +14,7 @@ const clearMiniPicturesList = () => {
 };
 
 
-const сreatePictures = (pictureData) => {
+const createPictures = (pictureData) => {
   clearMiniPicturesList();
   const pictureListFragment = document.createDocumentFragment();
 
@@ -35,4 +35,4 @@ const сreatePictures = (pictureData) => {
   pictureList.append(pictureListFragment);
 };
 
-export{сreatePictures};
+export{createPictures};
