@@ -1,5 +1,5 @@
 import {isEscapeKey, isEnterKey} from './util.js';
-import {loadCommentsPartly} from './picture-comments.js';
+import {onCommentsPartlyLoad} from './picture-comments.js';
 
 const miniPicture = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -20,17 +20,17 @@ function openBigPicture () {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
 
-  document.addEventListener('keydown', onEscKeydown(closeBigPicture));
+  document.addEventListener('keydown', onEscKeydown(onBigPictureClose));
 }
 
-function closeBigPicture () {
+function onBigPictureClose () {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   commentsList.innerHTML = '';
   buttonLoaderComments.classList.remove('hidden');
-  buttonLoaderComments.removeEventListener ('click', loadCommentsPartly);
+  buttonLoaderComments.removeEventListener ('click', onCommentsPartlyLoad);
 
-  document.removeEventListener('keydown', onEscKeydown(closeBigPicture));
+  document.removeEventListener('keydown', onEscKeydown(onBigPictureClose));
 }
 
 miniPicture.addEventListener('click', (evt) => {
@@ -45,6 +45,6 @@ miniPicture.addEventListener('keydown', (evt) => {
   }
 });
 
-bigPictureCancelElement.addEventListener('click', closeBigPicture);
+bigPictureCancelElement.addEventListener('click', onBigPictureClose);
 
 export{onEscKeydown};

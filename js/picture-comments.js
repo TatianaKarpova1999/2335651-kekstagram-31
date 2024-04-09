@@ -21,7 +21,7 @@ const addCommentsList = (arr, id) => {
   });
 };
 
-const loadCommentsPartly = () => {
+const onCommentsPartlyLoad = () => {
   const hiddenCommentsList = commentsList.getElementsByClassName('hidden');
 
   let commentsCount = 5;
@@ -37,9 +37,9 @@ const loadCommentsPartly = () => {
   commentShownCount.textContent = commentsList.children.length - commentsList.getElementsByClassName('hidden').length;
 };
 
-const onCommentsLoad = () => {
-  loadCommentsPartly();
-  buttonLoaderComments.addEventListener ('click', loadCommentsPartly);
+const commentsLoad = () => {
+  onCommentsPartlyLoad();
+  buttonLoaderComments.addEventListener ('click', onCommentsPartlyLoad);
 };
 
-export{onCommentsLoad, addCommentsList, loadCommentsPartly};
+export{commentsLoad, addCommentsList, onCommentsPartlyLoad};

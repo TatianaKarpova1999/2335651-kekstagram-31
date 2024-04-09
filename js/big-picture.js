@@ -1,4 +1,4 @@
-import {onCommentsLoad, addCommentsList} from './picture-comments.js';
+import {commentsLoad, addCommentsList} from './picture-comments.js';
 
 const bigPicture = document.querySelector('.big-picture__img img');
 const miniPictures = document.querySelector('.pictures');
@@ -24,7 +24,7 @@ const getBigPictureData = (arr) => {
       for (let i = 0; i < Array.from(commentsList.childNodes).length; i++) {
         commentsList.childNodes[i].classList.add('hidden');
       }
-      onCommentsLoad();
+      commentsLoad();
     }
   });
 };

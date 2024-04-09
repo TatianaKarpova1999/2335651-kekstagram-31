@@ -13,11 +13,11 @@ imgUpload.addEventListener('change', (evt) => {
   if (evt.target.value) {
     editorImg.classList.remove('hidden');
     document.body.classList.add('modal-open');
-    document.addEventListener('keydown', onEscKeydown(closeForm));
+    document.addEventListener('keydown', onEscKeydown(onFormClose));
   }
 });
 
-function closeForm () {
+function onFormClose () {
   editorImg.classList.add('hidden');
   document.body.classList.remove('modal-open');
   imgEditorForm.reset();
@@ -27,9 +27,9 @@ function closeForm () {
   sliderElement.classList.add('hidden');
   sliderElementContainer.classList.add('hidden');
 
-  document.removeEventListener('keydown', onEscKeydown(closeForm));
+  document.removeEventListener('keydown', onEscKeydown(onFormClose));
 }
 
-editorImgButtonClose.addEventListener('click', closeForm);
+editorImgButtonClose.addEventListener('click', onFormClose);
 
-export{closeForm};
+export{onFormClose};

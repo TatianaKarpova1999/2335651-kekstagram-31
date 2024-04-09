@@ -1,4 +1,4 @@
-import {closeForm} from './open-form.js';
+import {onFormClose} from './open-form.js';
 import {checkLengthComment, checkHashtags, checkCountHashtags, checkRepeatHashtags} from './functions-validate-form.js';
 import {onPictureEffectChange} from '../effects.js';
 import {addScaling} from '../scale-control.js';
@@ -80,6 +80,6 @@ effectsList.addEventListener('change', onPictureEffectChange);
 textComment.addEventListener('keydown', (evt) => evt.stopPropagation());
 textHashtags.addEventListener('keydown', (evt) => evt.stopPropagation());
 
-setUserFormSubmit(closeForm);
+setUserFormSubmit(onFormClose);
 
 export{setUserFormSubmit, pristine};
