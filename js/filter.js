@@ -1,8 +1,8 @@
 import {createPictures} from './creation-picture.js';
 import {debounce} from './util.js';
 
-const filterForm = document.querySelector('.img-filters__form');
-const filterButton = filterForm.querySelectorAll('.img-filters__button');
+const RERENDER_DELAY = 500;
+const PICTURES_COUNT = 10;
 
 const Filters = {
   DEFAULT: 'filter-default',
@@ -10,8 +10,8 @@ const Filters = {
   DISCUSSED: 'filter-discussed',
 };
 
-const RERENDER_DELAY = 500;
-const PICTURES_COUNT = 10;
+const filterForm = document.querySelector('.img-filters__form');
+const filterButton = filterForm.querySelectorAll('.img-filters__button');
 
 const switchFilterButton = () => {
   for (const button of filterButton) {

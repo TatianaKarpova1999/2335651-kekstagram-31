@@ -1,8 +1,3 @@
-const sliderElement = document.querySelector('.effect-level__slider');
-const effectLevelValue = document.querySelector('.effect-level__value');
-const imgPreview = document.querySelector('.img-upload__preview img');
-const sliderElementContainer = document.querySelector('.img-upload__effect-level');
-
 const DEFAULT_SLIDER = {
   range: {
     min: 0,
@@ -48,6 +43,11 @@ const PICTURE_EFFECTS = {
     step: 0.1
   }
 };
+
+const sliderElement = document.querySelector('.effect-level__slider');
+const effectLevelValue = document.querySelector('.effect-level__value');
+const imgPreview = document.querySelector('.img-upload__preview img');
+const sliderElementContainer = document.querySelector('.img-upload__effect-level');
 
 noUiSlider.create(sliderElement, DEFAULT_SLIDER);
 

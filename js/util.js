@@ -1,6 +1,7 @@
-const errorMessage = document.querySelector('#data-error').content.querySelector('.data-error');
 
 const ALERT_SHOW_TIME = 5000;
+
+const errorMessage = document.querySelector('#data-error').content.querySelector('.data-error');
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 

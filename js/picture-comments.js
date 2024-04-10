@@ -1,3 +1,4 @@
+const COMMENTS_COUNT = 5;
 
 const buttonLoaderComments = document.querySelector('.social__comments-loader');
 const commentsList = document.querySelector('.social__comments');
@@ -24,14 +25,14 @@ const addCommentsList = (arr, id) => {
 const onCommentsPartlyLoad = () => {
   const hiddenCommentsList = commentsList.getElementsByClassName('hidden');
 
-  let commentsCount = 5;
+  let numberLoadedComments = COMMENTS_COUNT;
 
-  if (hiddenCommentsList.length <= 5) {
-    commentsCount = hiddenCommentsList.length;
+  if (hiddenCommentsList.length <= COMMENTS_COUNT) {
+    numberLoadedComments = hiddenCommentsList.length;
     buttonLoaderComments.classList.add('hidden');
   }
 
-  for (let i = 0; i < commentsCount; i++) {
+  for (let i = 0; i < numberLoadedComments; i++) {
     hiddenCommentsList[0].classList.remove('hidden');
   }
   commentShownCount.textContent = commentsList.children.length - commentsList.getElementsByClassName('hidden').length;
