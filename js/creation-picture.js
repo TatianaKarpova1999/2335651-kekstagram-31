@@ -1,9 +1,9 @@
 
-const pictureList = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictureListNode = document.querySelector('.pictures');
+const pictureTemplateNode = document.querySelector('#picture').content.querySelector('.picture');
 
 const clearMiniPicturesList = () => {
-  const arrMiniPictures = Array.from(pictureList.children);
+  const arrMiniPictures = Array.from(pictureListNode.children);
 
   arrMiniPictures.forEach((element) => {
     if (element.className === 'picture'){
@@ -18,12 +18,12 @@ const createPictures = (pictureData) => {
   const pictureListFragment = document.createDocumentFragment();
 
   pictureData.forEach(({url, description, likes, comments, id}) => {
-    const pictureElement = pictureTemplate.cloneNode(true);
-    const pictureImg = pictureElement.querySelector('.picture__img');
-    pictureImg.setAttribute('data-id', id);
-    pictureImg.src = url;
+    const pictureElement = pictureTemplateNode.cloneNode(true);
+    const pictureNode = pictureElement.querySelector('.picture__img');
+    pictureNode.setAttribute('data-id', id);
+    pictureNode.src = url;
     pictureElement.setAttribute('data-id', id);
-    pictureImg.alt = description;
+    pictureNode.alt = description;
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
 
@@ -31,7 +31,7 @@ const createPictures = (pictureData) => {
     pictureListFragment.append(pictureElement);
   });
 
-  pictureList.append(pictureListFragment);
+  pictureListNode.append(pictureListFragment);
 };
 
 export{createPictures};

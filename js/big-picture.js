@@ -1,28 +1,28 @@
 import {commentsLoad, addCommentsList} from './picture-comments.js';
 
-const bigPicture = document.querySelector('.big-picture__img img');
-const miniPictures = document.querySelector('.pictures');
-const bigPictureLikes = document.querySelector('.likes-count');
-const bigPictureDescription = document.querySelector('.social__caption');
+const bigPictureNode = document.querySelector('.big-picture__img img');
+const miniPicturesNode = document.querySelector('.pictures');
+const bigPictureLikesNode = document.querySelector('.likes-count');
+const bigPictureDescriptionNode = document.querySelector('.social__caption');
 
-const commentTotalCount = document.querySelector('.social__comment-total-count');
-const commentsList = document.querySelector('.social__comments');
+const commentTotalCountNode = document.querySelector('.social__comment-total-count');
+const commentsListNode = document.querySelector('.social__comments');
 
 const getBigPictureData = (arr) => {
-  miniPictures.addEventListener('click', (evt) => {
+  miniPicturesNode.addEventListener('click', (evt) => {
     if (evt.target.className === 'picture__img') {
       const dataPictureImg = evt.target;
       const imageId = dataPictureImg.getAttribute('data-id');
       const pictureDescription = arr.find((element) => element.id === parseInt(imageId, 10));
 
-      bigPictureLikes.textContent = pictureDescription.likes;
-      bigPicture.src = pictureDescription.url;
-      bigPictureDescription.textContent = pictureDescription.description;
-      commentTotalCount.textContent = pictureDescription.comments.length;
+      bigPictureLikesNode.textContent = pictureDescription.likes;
+      bigPictureNode.src = pictureDescription.url;
+      bigPictureDescriptionNode.textContent = pictureDescription.description;
+      commentTotalCountNode.textContent = String(pictureDescription.comments.length);
       addCommentsList(arr, imageId);
 
-      for (let i = 0; i < Array.from(commentsList.childNodes).length; i++) {
-        commentsList.childNodes[i].classList.add('hidden');
+      for (let i = 0; i < Array.from(commentsListNode.childNodes).length; i++) {
+        commentsListNode.childNodes[i].classList.add('hidden');
       }
       commentsLoad();
     }

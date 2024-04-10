@@ -1,17 +1,17 @@
 
 const ALERT_SHOW_TIME = 5000;
 
-const errorMessage = document.querySelector('#data-error').content.querySelector('.data-error');
+const errorMessageNode = document.querySelector('#data-error').content.querySelector('.data-error');
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isEnterKey = (evt) => evt.key === 'Enter';
 
 const showAlert = () => {
-  document.body.append(errorMessage);
+  document.body.append(errorMessageNode);
 
   setTimeout(() => {
-    errorMessage.remove();
+    errorMessageNode.remove();
   }, ALERT_SHOW_TIME);
 };
 

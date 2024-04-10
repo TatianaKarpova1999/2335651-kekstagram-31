@@ -2,29 +2,29 @@ const MAX_SCALE = 100;
 const MIN_SCALE = 25;
 const SCALE_STEP = 25;
 
-const scaleControlSmaller = document.querySelector('.scale__control--smaller');
-const scaleControlBigger = document.querySelector('.scale__control--bigger');
-const scaleControlValue = document.querySelector('.scale__control--value');
-const uploadPreview = document.querySelector('.img-upload__preview img');
+const scaleControlSmallerNode = document.querySelector('.scale__control--smaller');
+const scaleControlBiggerNode = document.querySelector('.scale__control--bigger');
+const scaleControlValueNode = document.querySelector('.scale__control--value');
+const previewUploadNode = document.querySelector('.img-upload__preview img');
 
 const addScaling = () => {
-  scaleControlSmaller.addEventListener('click', () => {
-    const scaleValueInteger = parseInt(scaleControlValue.value, 10);
+  scaleControlSmallerNode.addEventListener('click', () => {
+    const scaleValueInteger = parseInt(scaleControlValueNode.value, 10);
 
     if (scaleValueInteger > MIN_SCALE) {
-      scaleControlValue.value = `${scaleValueInteger - SCALE_STEP }%`;
-      uploadPreview.style.transform = `scale(0.${parseInt(scaleControlValue.value, 10)})`;
+      scaleControlValueNode.value = `${scaleValueInteger - SCALE_STEP }%`;
+      previewUploadNode.style.transform = `scale(0.${parseInt(scaleControlValueNode.value, 10)})`;
     }
   });
 
-  scaleControlBigger.addEventListener('click', () => {
-    const scaleValueInteger = parseInt(scaleControlValue.value, 10);
+  scaleControlBiggerNode.addEventListener('click', () => {
+    const scaleValueInteger = parseInt(scaleControlValueNode.value, 10);
 
     if (scaleValueInteger < MAX_SCALE) {
-      scaleControlValue.value = `${parseInt(scaleControlValue.value, 10) + SCALE_STEP }%`;
-      uploadPreview.style.transform = `scale(0.${parseInt(scaleControlValue.value, 10)})`;
-      if(parseInt(scaleControlValue.value, 10) === MAX_SCALE) {
-        uploadPreview.style.transform = 'scale(1)';
+      scaleControlValueNode.value = `${parseInt(scaleControlValueNode.value, 10) + SCALE_STEP }%`;
+      previewUploadNode.style.transform = `scale(0.${parseInt(scaleControlValueNode.value, 10)})`;
+      if(parseInt(scaleControlValueNode.value, 10) === MAX_SCALE) {
+        previewUploadNode.style.transform = 'scale(1)';
       }
     }
   });

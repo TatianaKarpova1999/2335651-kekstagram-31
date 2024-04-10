@@ -1,12 +1,11 @@
 import {isEscapeKey, isEnterKey} from './util.js';
 import {onCommentsPartlyLoad} from './picture-comments.js';
 
-const miniPicture = document.querySelector('.pictures');
-const bigPicture = document.querySelector('.big-picture');
-const bigPictureCancelElement = document.querySelector('.big-picture__cancel');
-const body = document.querySelector('body');
-const buttonLoaderComments = document.querySelector('.social__comments-loader');
-const commentsList = document.querySelector('.social__comments');
+const miniPictureNode = document.querySelector('.pictures');
+const bigPictureNode = document.querySelector('.big-picture');
+const bigPictureCancelNode = document.querySelector('.big-picture__cancel');
+const buttonLoaderCommentsNode = document.querySelector('.social__comments-loader');
+const commentsListNode = document.querySelector('.social__comments');
 
 
 const onEscKeydown = (close) => (evt) => {
@@ -17,34 +16,34 @@ const onEscKeydown = (close) => (evt) => {
 };
 
 function openBigPicture () {
-  bigPicture.classList.remove('hidden');
-  body.classList.add('modal-open');
+  bigPictureNode.classList.remove('hidden');
+  document.body.classList.add('modal-open');
 
   document.addEventListener('keydown', onEscKeydown(onBigPictureClose));
 }
 
 function onBigPictureClose () {
-  bigPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-  commentsList.innerHTML = '';
-  buttonLoaderComments.classList.remove('hidden');
-  buttonLoaderComments.removeEventListener ('click', onCommentsPartlyLoad);
+  bigPictureNode.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  commentsListNode.innerHTML = '';
+  buttonLoaderCommentsNode.classList.remove('hidden');
+  buttonLoaderCommentsNode.removeEventListener ('click', onCommentsPartlyLoad);
 
   document.removeEventListener('keydown', onEscKeydown(onBigPictureClose));
 }
 
-miniPicture.addEventListener('click', (evt) => {
+miniPictureNode.addEventListener('click', (evt) => {
   if (evt.target.className === 'picture__img') {
     openBigPicture();
   }
 });
 
-miniPicture.addEventListener('keydown', (evt) => {
+miniPictureNode.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt) && evt.target.className === 'picture') {
     openBigPicture();
   }
 });
 
-bigPictureCancelElement.addEventListener('click', onBigPictureClose);
+bigPictureCancelNode.addEventListener('click', onBigPictureClose);
 
 export{onEscKeydown};

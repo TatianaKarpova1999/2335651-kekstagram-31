@@ -10,13 +10,13 @@ const Filters = {
   DISCUSSED: 'filter-discussed',
 };
 
-const filterForm = document.querySelector('.img-filters__form');
-const filterButton = filterForm.querySelectorAll('.img-filters__button');
+const filterFormNode = document.querySelector('.img-filters__form');
+const filterButtonNode = filterFormNode.querySelectorAll('.img-filters__button');
 
 const switchFilterButton = () => {
-  for (const button of filterButton) {
+  for (const button of filterButtonNode) {
     button.addEventListener('click', function () {
-      filterButton.forEach((element) => element.classList.remove('img-filters__button--active'));
+      filterButtonNode.forEach((element) => element.classList.remove('img-filters__button--active'));
       this.classList.add('img-filters__button--active');
     });
   }
@@ -28,7 +28,7 @@ const changePicturesList = (data) => {
   const copyArr = data.slice();
   const pictureListRandom = copyArr;
 
-  filterForm.addEventListener('click', (evt) => {
+  filterFormNode.addEventListener('click', (evt) => {
     switch (evt.target.id) {
       case Filters.RANDOM:
         pictureListRandom.sort(() => 0.5 - Math.random());

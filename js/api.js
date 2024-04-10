@@ -8,16 +8,16 @@ const route = {
   SEND_DATA: '/',
 };
 
-const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
-const pictureFilters = document.querySelector('.img-filters');
+const successMessageTemplateNode = document.querySelector('#success').content.querySelector('.success');
+const errorMessageTemplateNode = document.querySelector('#error').content.querySelector('.error');
+const pictureFiltersNode = document.querySelector('.img-filters');
 
 const getData = (onSuccess) => {
   fetch(`${BASE_URL}${route.GET_DATA}`)
     .then((response) => response.json())
     .then((data) => {
       onSuccess(data);
-      pictureFilters.classList.remove('img-filters--inactive');
+      pictureFiltersNode.classList.remove('img-filters--inactive');
     })
     .catch(() => showAlert());
 };
@@ -32,14 +32,14 @@ const sendData = (onSuccess, onFail, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
-        openInfoMessage(successMessageTemplate);
+        openInfoMessage(successMessageTemplateNode);
       } else {
-        openInfoMessage(errorMessageTemplate);
+        openInfoMessage(errorMessageTemplateNode);
         onFail();
       }
     })
     .catch(() => {
-      document.body.append(errorMessageTemplate);
+      document.body.append(errorMessageTemplateNode);
       onFail();
     });
 };

@@ -44,15 +44,24 @@ const PICTURE_EFFECTS = {
   }
 };
 
-const sliderElement = document.querySelector('.effect-level__slider');
-const effectLevelValue = document.querySelector('.effect-level__value');
-const imgPreview = document.querySelector('.img-upload__preview img');
-const sliderElementContainer = document.querySelector('.img-upload__effect-level');
+const PICTURES_STYLE_DATA = {
+  none: 'none',
+  chrome: 'grayscale',
+  sepia: 'sepia',
+  marvin: 'invert',
+  phobos: 'blur',
+  heat: 'brightness'
+};
 
-noUiSlider.create(sliderElement, DEFAULT_SLIDER);
+const sliderNode = document.querySelector('.effect-level__slider');
+const effectLevelValueNode = document.querySelector('.effect-level__value');
+const previewImgNode = document.querySelector('.img-upload__preview img');
+const sliderElementContainerNode = document.querySelector('.img-upload__effect-level');
 
-sliderElement.classList.add('hidden');
-sliderElementContainer.classList.add('hidden');
+noUiSlider.create(sliderNode, DEFAULT_SLIDER);
+
+sliderNode.classList.add('hidden');
+sliderElementContainerNode.classList.add('hidden');
 
 const onPictureEffectChange = (evt) => {
 
@@ -60,29 +69,31 @@ const onPictureEffectChange = (evt) => {
 
   const applyingEffect = PICTURE_EFFECTS[effect];
 
-  sliderElement.noUiSlider.updateOptions(applyingEffect);
+  sliderNode.noUiSlider.updateOptions(applyingEffect);
 
-  sliderElement.noUiSlider.on('update', () => {
-    effectLevelValue.value = sliderElement.noUiSlider.get();
+  sliderNode.noUiSlider.on('update', () => {
+    effectLevelValueNode.value = sliderNode.noUiSlider.get();
 
-    const PICTURES_STYLE_DATA = {
-      none: 'none',
-      chrome: `grayscale(${effectLevelValue.value})`,
-      sepia: `sepia(${effectLevelValue.value})`,
-      marvin: `invert(${effectLevelValue.value}%)`,
-      phobos: `blur(${effectLevelValue.value}px)`,
-      heat: `brightness(${effectLevelValue.value})`
-    };
+    function effectPicture(value) {
+      if (effect === 'marvin') {
+        return `${PICTURES_STYLE_DATA[effect]}(${value}%)`;
+      } else if (effect === 'phobos') {
+        return `${PICTURES_STYLE_DATA[effect]}(${value}px)`;
+      }
 
-    imgPreview.style.filter = PICTURES_STYLE_DATA[effect];
+      return `${PICTURES_STYLE_DATA[effect]}(${value})`;
+    }
+
+    previewImgNode.style.filter = effectPicture(effectLevelValueNode.value);
   });
 
   if (effect === 'none') {
-    sliderElement.classList.add('hidden');
-    sliderElementContainer.classList.add('hidden');
+    previewImgNode.style.filter = PICTURES_STYLE_DATA[effect];
+    sliderNode.classList.add('hidden');
+    sliderElementContainerNode.classList.add('hidden');
   } else {
-    sliderElement.classList.remove('hidden');
-    sliderElementContainer.classList.remove('hidden');
+    sliderNode.classList.remove('hidden');
+    sliderElementContainerNode.classList.remove('hidden');
   }
 };
 

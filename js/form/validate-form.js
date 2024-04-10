@@ -4,13 +4,13 @@ import {onPictureEffectChange} from '../effects.js';
 import {addScaling} from '../scale-control.js';
 import {sendData} from '../api.js';
 
-const imgEditorForm = document.querySelector('.img-upload__form');
-const textComment = imgEditorForm.querySelector('.text__description');
-const textHashtags = imgEditorForm.querySelector('.text__hashtags');
-const effectsList = document.querySelector('.effects__list');
-const submitButtonForm = document.querySelector('.img-upload__submit');
+const imgEditorFormNode = document.querySelector('.img-upload__form');
+const descriptionNode = imgEditorFormNode.querySelector('.text__description');
+const hashtagsNode = imgEditorFormNode.querySelector('.text__hashtags');
+const effectsListNode = document.querySelector('.effects__list');
+const formSubmitNode = document.querySelector('.img-upload__submit');
 
-const pristine = new Pristine(imgEditorForm, {
+const pristine = new Pristine(imgEditorFormNode, {
   classTo: 'img-upload__field-wrapper',
   errorClass: 'img-upload__field-wrapper--invalid',
   successClass: 'img-upload__field-wrapper--valid',
@@ -21,39 +21,39 @@ const pristine = new Pristine(imgEditorForm, {
 
 
 pristine.addValidator(
-  textComment,
+  descriptionNode,
   checkLengthComment,
   'Длина комментария больше 140 символов'
 );
 
 pristine.addValidator(
-  textHashtags,
+  hashtagsNode,
   checkHashtags,
   'Введён невалидный хэштег'
 );
 
 pristine.addValidator(
-  textHashtags,
+  hashtagsNode,
   checkCountHashtags,
   'Превышено количество хэштегов'
 );
 
 pristine.addValidator(
-  textHashtags,
+  hashtagsNode,
   checkRepeatHashtags,
   'Хэштеги повторяются'
 );
 
 const blockSubmitButton = () => {
-  submitButtonForm.disabled = true;
+  formSubmitNode.disabled = true;
 };
 
 const unblockSubmitButton = () => {
-  submitButtonForm.disabled = false;
+  formSubmitNode.disabled = false;
 };
 
 const setUserFormSubmit = (onSuccess) => {
-  imgEditorForm.addEventListener('submit', (evt) => {
+  imgEditorFormNode.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
     if(isValid){
@@ -75,10 +75,10 @@ const setUserFormSubmit = (onSuccess) => {
 
 addScaling();
 
-effectsList.addEventListener('change', onPictureEffectChange);
+effectsListNode.addEventListener('change', onPictureEffectChange);
 
-textComment.addEventListener('keydown', (evt) => evt.stopPropagation());
-textHashtags.addEventListener('keydown', (evt) => evt.stopPropagation());
+descriptionNode.addEventListener('keydown', (evt) => evt.stopPropagation());
+hashtagsNode.addEventListener('keydown', (evt) => evt.stopPropagation());
 
 setUserFormSubmit(onFormClose);
 
